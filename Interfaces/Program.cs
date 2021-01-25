@@ -25,6 +25,25 @@ namespace Interfaces
             };
             personManager.Add(customer);
             personManager.Add(student);
+
+
+            IPerson person = new Student();
+            IPerson perso2 = new Customer();
+
+
+            CustomerManager customerManager = new CustomerManager();
+            customerManager.Add(new SqlServerCustomerDal());
+
+
+            ICustomerDal[] customerDals = new ICustomerDal[2]
+            {
+                new SqlServerCustomerDal(),
+                new OracleCustoemrDal()
+            };
+            foreach (var customerDal in customerDals)
+            {
+                customerDal.Add();
+            }
             
 
         }
@@ -48,6 +67,14 @@ namespace Interfaces
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string Department { get; set; }
+        }
+        class Worker : IPerson
+        {
+            public int Id { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Department { get; set; }
+            public int Salary { get; set; }
         }
         class PersonManager
         {
