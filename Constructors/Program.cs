@@ -10,7 +10,7 @@ namespace Constructors
             customerManager.List();
 
             Product product = new Product { Id = 1, Name = "Emre" };
-            Product product1 = new Product(2,"Yaren");
+            Product product1 = new Product(2, "Yaren");
             Console.WriteLine(product1._name);
 
             EmployeeManager employeeManager = new EmployeeManager(new DatabaseLogger());
@@ -19,11 +19,18 @@ namespace Constructors
             PersonManager personManager = new PersonManager("Product");
             personManager.Add();
 
+            Teacher.Number = 10;
+            Utilities.Validate();
+
+            Manager.DoSomething();
+            Manager manager2 = new Manager();
+            manager2.DoSomething2(); //*
+
         }
     }
     class CustomerManager
     {
-        public int _count=15;
+        public int _count = 15;
         public CustomerManager(int count)
         {
             _count = count;
@@ -34,7 +41,7 @@ namespace Constructors
         }
         public void List()
         {
-            Console.WriteLine("Listed {0} items",_count);
+            Console.WriteLine("Listed {0} items", _count);
         }
         public void Add()
         {
@@ -49,7 +56,7 @@ namespace Constructors
         }
         public int _id;
         public string _name;
-        public Product(int id,string name)
+        public Product(int id, string name)
         {
             _id = id;
             _name = name;
@@ -97,12 +104,12 @@ namespace Constructors
         }
         public void Meesage()
         {
-            Console.WriteLine("{0} message",_entity);
+            Console.WriteLine("{0} message", _entity);
         }
     }
-    class PersonManager:BaseClass
+    class PersonManager : BaseClass
     {
-        public PersonManager(string entity):base(entity)
+        public PersonManager(string entity) : base(entity)
         {
 
         }
@@ -110,6 +117,29 @@ namespace Constructors
         {
             Console.WriteLine("Added!");
             Meesage();
+        }
+    }
+    static class Teacher
+    {
+        public static int Number { get; set; }
+    }
+    static class Utilities
+    {
+        public static void Validate()
+        {
+            Console.WriteLine("Validaton is done");
+        }
+    }
+
+    class Manager
+    {
+        public static void DoSomething()
+        {
+            Console.WriteLine("Done");
+        }
+        public void DoSomething2()
+        {
+            Console.WriteLine("Done2");
         }
     }
 }
